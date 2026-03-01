@@ -13,13 +13,25 @@ import Profile from "./pages/Profile";
 import Settings from "./pages/Settings";
 import { pagePaths } from "./router/pagePaths";
 import ProtectedRoute from "./router/ProtectedRoute";
+import { useState } from "react";
+import StoryPortal from "./portal/StoryPortal";
+import { stories } from "./data/data";
 
 function App() {
+  const [open, setOpen] = useState(true);
+  const [storyIndex, setStoryIndex] = useState(0);
   return (
     <section className="max-w-md mx-auto shadow-neutral-400 shadow-lg  w-full min-h-screen">
       <Routes>
-        <Route path={pagePaths.home} element={<ProtectedRoute isLoggedIn={true}><AccoutLayout /></ProtectedRoute>}>
-          <Route index element={<Home />} />
+        <Route
+          path={pagePaths.home}
+          element={
+            <ProtectedRoute isLoggedIn={true}>
+              <AccoutLayout open={open} setOpen={setOpen} />
+            </ProtectedRoute>
+          }
+        >
+          <Route index element={<Home setStoryIndex={setStoryIndex} open={open} setOpen={setOpen} />} />
           <Route path={pagePaths.messages} element={<Messages />} />
           <Route path={pagePaths.notifications} element={<Notifications />} />
           <Route path={pagePaths.explore} element={<Explore />} />
@@ -31,6 +43,10 @@ function App() {
         <Route path={pagePaths.login} element={<Login />} />
         <Route path={pagePaths.register} element={<Register />} />
       </Routes>
+      {open && (
+        <StoryPortal story={stories[storyIndex]} onClose={() => setOpen(false)}>
+        </StoryPortal>
+      )}
     </section>
   );
 }
