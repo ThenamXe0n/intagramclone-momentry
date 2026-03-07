@@ -18,15 +18,16 @@ import StoryPortal from "./portal/StoryPortal";
 import { stories } from "./data/data";
 
 function App() {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const [storyIndex, setStoryIndex] = useState(0);
+  const [loginStatus, setLoginStatus] = useState(localStorage.getItem("loginStatus")==="momentryLoggedIn" || false);
   return (
     <section className="max-w-md mx-auto shadow-neutral-400 shadow-lg  w-full min-h-screen">
       <Routes>
         <Route
           path={pagePaths.home}
           element={
-            <ProtectedRoute isLoggedIn={true}>
+            <ProtectedRoute isLoggedIn={loginStatus}>
               <AccoutLayout open={open} setOpen={setOpen} />
             </ProtectedRoute>
           }

@@ -6,7 +6,7 @@ import StoryPortal from "../portal/StoryPortal";
 const AccoutLayout = () => {
  
   return (
-    <div className="h-[90vh] w-full flex flex-col ">
+    <div className="h-screen w-full flex flex-col ">
       <header className="h-[6%] w-full">
         <NavBar />
       </header>

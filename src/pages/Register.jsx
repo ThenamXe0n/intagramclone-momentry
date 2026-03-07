@@ -1,16 +1,27 @@
 import { useForm } from "react-hook-form";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { pagePaths } from "../router/pagePaths";
+import { registerUserAPI } from "../services/apiCollections";
 
 export default function Register() {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log("Register:", data);
+  const onSubmit = async (data) => {
+    let registeredUserDetails = { ...data, avatar: "", bio: "" };
+    //api callling
+    try {
+      let response = await registerUserAPI(registeredUserDetails);
+      navigate(pagePaths.login);
+    } catch (error) {
+      alert("Registration failed! Please try again.");
+      console.log("Error in registration", error);
+    }
+
     // TODO: integrate with auth API
   };
 
@@ -32,7 +43,10 @@ export default function Register() {
             Sign up to see photos and videos from your friends.
           </p>
 
-          <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="flex flex-col gap-3"
+          >
             <div>
               <input
                 type="email"

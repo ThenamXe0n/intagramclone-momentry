@@ -1,16 +1,62 @@
-# React + Vite
+## instagram like clone - momentry 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+project is ui only clone like instagram . momenty is a social media platform where use can connect post images and status stories as well, can chat (no real time as we only use react js)
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### folder structure 
+```
+D:.
+├───public
+│   │   favicon.png
+│   │   vite.svg
+│   │   
+│   └───assets
+│          
+│
+└───src
+    │   App.css
+    │   App.jsx
+    │   index.css
+    │   main.jsx
+    │
+    ├───assets
+    │       icons.jsx
+    │
+    ├───component
+    │       Footer.jsx
+    │       NavBar.jsx
+    │
+    ├───data
+    │       data.js
+    │
+    ├───layouts
+    │       AccoutLayout.jsx
+    │
+    ├───pages
+    │       Explore.jsx
+    │       Home.jsx
+    │       Login.jsx
+    │       Messages.jsx
+    │       Notifications.jsx
+    │       Post.jsx
+    │       Profile.jsx
+    │       Register.jsx
+    │       SavePost.jsx
+    │       Settings.jsx
+    │
+    ├───portal
+    │       StoryPortal.jsx
+    │
+    └───router
+    |        pagePaths.js
+    |        ProtectedRoute.jsx
+    |  .gitignore
+    │   database.json
+    │   eslint.config.js
+    │   index.html
+    │   package-lock.json
+    │   package.json
+    │   README.md
+    │   vercel.json
+    │   vite.config.js
+    │   
+```

@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { Link } from "react-router";
 import { pagePaths } from "../router/pagePaths";
+import { loginUserAPI } from "../services/apiCollections";
 
 export default function Login() {
   const {
@@ -9,8 +10,17 @@ export default function Login() {
     formState: { errors, isSubmitting },
   } = useForm();
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     console.log("Login:", data);
+    try {
+      const response = await loginUserAPI(data);
+      if (response) {
+        window.location.replace(pagePaths.home);
+      }
+    } catch (error) {
+      alert("failed");
+    }
+
     // TODO: integrate with auth API
   };
 
@@ -28,14 +38,17 @@ export default function Login() {
             />
           </div>
 
-          <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="flex flex-col gap-3"
+          >
             <div>
               <input
                 type="text"
                 placeholder="Phone number, username, or email"
                 className="w-full px-3 py-2.5 text-sm bg-neutral-50 border border-neutral-200 rounded-md outline-none placeholder:text-neutral-400 focus:border-neutral-400 focus:ring-0"
                 aria-invalid={errors.username ? "true" : "false"}
-                {...register("username", {
+                {...register("email", {
                   required: "This field is required",
                 })}
               />
@@ -71,10 +84,6 @@ export default function Login() {
               {isSubmitting ? "Logging in…" : "Log in"}
             </button>
           </form>
-
-        
-
-      
         </div>
 
         {/* Sign up link */}
