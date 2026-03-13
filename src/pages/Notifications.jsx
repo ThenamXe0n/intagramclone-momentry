@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axiosInstance from "../services/axiosInstance";
+import moment from "moment"
 
 export default function Notifications() {
   const [notifications, setNotifications] = useState([]);
@@ -36,7 +37,7 @@ export function NotificationTile({notification}) {
       </div>
       <div className="space-x-2 flex-1">
         <strong>{notification?.sender?.username}</strong>
-        <span>{notification?.message}</span> • <span>{moment(notification?.createdAt).format()}</span>
+        <span>{notification?.message}</span> • <span>{moment(notification?.createdAt,"YYYYMMDD").fromNow()}</span>
       </div>
       <div className="w-fit">
         {notification?.type === "follow" && (

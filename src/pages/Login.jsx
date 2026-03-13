@@ -1,9 +1,13 @@
 import { useForm } from "react-hook-form";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { pagePaths } from "../router/pagePaths";
 import { loginUserAPI } from "../services/apiCollections";
+import { handleLogin, loginUserAsync } from "../features/auth/authSlice";
+import { useDispatch } from "react-redux";
 
 export default function Login() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -13,10 +17,8 @@ export default function Login() {
   const onSubmit = async (data) => {
     console.log("Login:", data);
     try {
-      const response = await loginUserAPI(data);
-      if (response) {
-        window.location.replace(pagePaths.home);
-      }
+      await dispatch(loginUserAsync(data)).unwrap();
+      navigate(pagePaths.home);
     } catch (error) {
       alert("failed");
     }

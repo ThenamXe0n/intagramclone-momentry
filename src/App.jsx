@@ -13,17 +13,23 @@ import Profile from "./pages/Profile";
 import Settings from "./pages/Settings";
 import { pagePaths } from "./router/pagePaths";
 import ProtectedRoute from "./router/ProtectedRoute";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import StoryPortal from "./portal/StoryPortal";
 import { stories } from "./data/data";
+import { useDispatch } from "react-redux";
+import { fetchDetails } from "./features/auth/authSlice";
 
 function App() {
+  const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const [storyIndex, setStoryIndex] = useState(0);
-  const [loginStatus, setLoginStatus] = useState(localStorage.getItem("loginStatus")==="momentryLoggedIn" || false);
+  const [loginStatus, setLoginStatus] = useState(
+    localStorage.getItem("loginStatus") === "momentryLoggedIn" || false,
+  );
 
-
-  console.log(storyIndex)
+ 
+         
+  console.log(storyIndex);
   return (
     <section className="max-w-md mx-auto shadow-neutral-400 shadow-lg  w-full min-h-screen">
       <Routes>
@@ -35,21 +41,37 @@ function App() {
             </ProtectedRoute>
           }
         >
-          <Route index element={<Home setStoryIndex={setStoryIndex} open={open} setOpen={setOpen} />} />
+          <Route
+            index
+            element={
+              <Home
+                setStoryIndex={setStoryIndex}
+                open={open}
+                setOpen={setOpen}
+              />
+            }
+          />
           <Route path={pagePaths.messages} element={<Messages />} />
           <Route path={pagePaths.notifications} element={<Notifications />} />
           <Route path={pagePaths.explore} element={<Explore />} />
           <Route path={pagePaths.post} element={<Post />} />
           <Route path={pagePaths.savePost} element={<SavePost />} />
-          <Route path={pagePaths.profile} element={<Profile setStoryIndex={setStoryIndex} setStoryOpen={setOpen} />} />
+          <Route
+            path={pagePaths.profile}
+            element={
+              <Profile setStoryIndex={setStoryIndex} setStoryOpen={setOpen} />
+            }
+          />
           <Route path={pagePaths.settings} element={<Settings />} />
         </Route>
         <Route path={pagePaths.login} element={<Login />} />
         <Route path={pagePaths.register} element={<Register />} />
       </Routes>
       {open && (
-        <StoryPortal story={stories[storyIndex]} onClose={() => setOpen(false)}>
-        </StoryPortal>
+        <StoryPortal
+          story={stories[storyIndex]}
+          onClose={() => setOpen(false)}
+        ></StoryPortal>
       )}
     </section>
   );

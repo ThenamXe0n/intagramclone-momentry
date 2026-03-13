@@ -38,7 +38,10 @@ export const loginUserAPI = async (payload) => {
     localStorage.setItem("loginStatus", "momentryLoggedIn");
     localStorage.setItem("loggedInUser", JSON.stringify(isExist.data[0]));
 
-    return true;
+    return {
+      user:isExist.data[0],
+      loginStatus:"momentryLoggedIn"
+    };
   } catch (error) {
     console.log("Error in loginUserAPI", error);
     throw new Error(error);
