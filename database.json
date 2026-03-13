@@ -10,12 +10,50 @@
       "id": 1
     }
   ],
-  "posts": [],
+  "posts": [
+    {
+      "image": "https://i.pinimg.com/736x/de/5a/3e/de5a3eee399dd05d443048b3b3c44d1d.jpg",
+      "caption": "tesr",
+      "likes": [],
+      "createdAt": "3/14/2026",
+      "userId": 1,
+      "user": {
+        "email": "nm@gmail.com",
+        "fullName": "Nameet Mandwal",
+        "username": "nameet",
+        "password": "demo@123",
+        "avatar": "",
+        "bio": "",
+        "id": 1
+      },
+      "id": 1
+    },
+    {
+      "image": "https://tse3.mm.bing.net/th/id/OIP.V10Hix7JbRHhLca3nvx9SwHaEK?pid=Api&h=220&P=0",
+      "caption": "ghj",
+      "likes": [],
+      "createdAt": "3/14/2026",
+      "userId": 1,
+      "user": {
+        "email": "nm@gmail.com",
+        "fullName": "Nameet Mandwal",
+        "username": "nameet",
+        "password": "demo@123",
+        "avatar": "",
+        "bio": "",
+        "id": 1
+      },
+      "id": 2
+    }
+  ],
   "notifications": [
     {
       "senderId": "XXbMcho",
       "receiverId": "sdfsd",
-      "sender": { "username": "nameet", "avatar": "https://i.pinimg.com/1200x/95/56/6b/95566b30ff6750fbc820bb26fcca9410.jpg" },
+      "sender": {
+        "username": "nameet",
+        "avatar": "https://i.pinimg.com/1200x/95/56/6b/95566b30ff6750fbc820bb26fcca9410.jpg"
+      },
       "type": "post",
       "createdAt": "2026-03-12T12:55:35.155Z",
       "message": "liked your post",

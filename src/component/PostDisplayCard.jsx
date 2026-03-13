@@ -5,6 +5,7 @@ const PostDisplayCard = React.memo(function({ post, liked }) {
   const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 
   async function handlePostLike() {
+    console.log("clicked")
     try {
       let newLikes = [...new Set([...post.likes, loggedInUser.id])];
       let response = await likePostAPI(post?.id, newLikes);
@@ -16,6 +17,7 @@ const PostDisplayCard = React.memo(function({ post, liked }) {
     }
   }
   async function handlePostDisLike() {
+        console.log("clicked")
     try {
       let newLikes = post.likes;
       let idx = newLikes.indexOf(loggedInUser.id);
@@ -74,15 +76,8 @@ const PostDisplayCard = React.memo(function({ post, liked }) {
         <div className="flex justify-between">
           <div className="flex gap-2">
             {/* like */}
-            <button
-              type="button"
-              onClickCapture={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-              }}
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
+            <div
+              onClick={() => {
                 liked ? handlePostDisLike() : handlePostLike();
               }}
               className="flex items-center cursor-pointer bg-transparent border-none p-0"
@@ -114,7 +109,7 @@ const PostDisplayCard = React.memo(function({ post, liked }) {
               )}
 
               <span>{post?.likes?.length || 0}</span>
-            </button>
+            </div>
             {/* comments */}
             <div className="flex  items-center">
               <svg
