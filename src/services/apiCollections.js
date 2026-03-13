@@ -54,9 +54,12 @@ export const uploadPostAPI = async (payload) => {
     throw new Error(error);
   }
 };
-export const fetchPostAPI = async () => {
+export const fetchAllPostAPI = async () => {
   try {
     const response = await axiosInstance.get(apiPaths.POST);
+    const getAllUser = await axiosInstance.get(apiPaths.USER);
+    console.log("posts", response.data);
+    console.log("all users", getAllUser.data);
     return response.data;
   } catch (error) {
     throw new Error(error);
@@ -64,9 +67,21 @@ export const fetchPostAPI = async () => {
 };
 export const fetchUserPostAPI = async (userid) => {
   try {
-    const response = await axiosInstance.get(`${apiPaths.POST}?userId=${userid}`);
+    const response = await axiosInstance.get(
+      `${apiPaths.POST}?userId=${userid}`,
+    );
     return response.data;
   } catch (error) {
     throw new Error(error);
+  }
+};
+
+export const likePostAPI = async (postId,likepayload) => {
+  try {
+    let response = await axiosInstance.patch(`${apiPaths.POST}/${postId}`,{likes:likepayload});
+    return response.data;
+
+  } catch (err) {
+    throw new Error(err.message);
   }
 };

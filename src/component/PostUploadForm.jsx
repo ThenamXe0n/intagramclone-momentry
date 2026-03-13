@@ -17,6 +17,7 @@ const PostUploadForm = () => {
       likes: [],
       createdAt: new Date().toLocaleDateString(),
       userId: loggedInUser.id,
+      user:loggedInUser
     };
     try {
       let response = await uploadPostAPI(payload);
@@ -46,9 +47,14 @@ const PostUploadForm = () => {
           Upload new post
         </p>
 
-        <form
-          onSubmit={handleSubmit(handlePostUpload)}
+        <div
           className="flex flex-col gap-3"
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              e.preventDefault();
+              handleSubmit(handlePostUpload)();
+            }
+          }}
         >
           <div>
             <input
@@ -82,13 +88,14 @@ const PostUploadForm = () => {
           </div>
 
           <button
-            type="submit"
+            type="button"
             disabled={isSubmitting}
+            onClick={() => handleSubmit(handlePostUpload)()}
             className="w-full py-2 mt-1 text-sm font-semibold text-white bg-[#0095f6] hover:bg-[#1877f2] disabled:opacity-60 disabled:pointer-events-none rounded-lg transition-colors"
           >
             {isSubmitting ? "Uploading…" : "Upload Post"}
           </button>
-        </form>
+        </div>
       </div>
     </div>
     // </div>

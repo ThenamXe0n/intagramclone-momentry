@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import StoryTile from "../component/StoryTile";
 import { fetchUserPostAPI } from "../services/apiCollections";
+import PostDisplayCard from "../component/PostDisplayCard";
 
 let samplepost = [
   {
@@ -49,8 +50,9 @@ let samplepost = [
   },
 ];
 
-export default function Profile() {
+export default function Profile({setStoryIndex,setStoryOpen}) {
   const [post, setPost] = useState([]);
+  const [view,setView]=useState("tile")
   const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
   console.log("user details", loggedInUser.email);
 
@@ -98,6 +100,10 @@ export default function Profile() {
       <div className="p-4 w-full">
         <div className="flex gap-2">
           <StoryTile
+          onOpenstory={()=>{
+            setStoryIndex(1);
+            setStoryOpen(true)
+          }}
             story={{
               user: {
                 name: "nameet mandwal",
@@ -132,24 +138,23 @@ export default function Profile() {
         </button>
       </div>
       {/* //post section  */}
-      <div className="grid grid-cols-3 grid-rows-3">
+     {view==="tile" && <div className="grid grid-cols-3 grid-rows-3">
         {post.map((post, postidx) => (
-          <PostTile key={postidx} post={post} />
+          <PostTile setView={setView} key={postidx} post={post} />
         ))}
-        <PostTile />
-        <PostTile />
-        <PostTile />
-        <PostTile />
-        <PostTile />
-        <PostTile />
-      </div>
+      </div>}
+     {view==="fullView" && <div className="grid grid-cols-1 grid-rows-3">
+        {post.map((post, postidx) => (
+          <PostDisplayCard key={postidx} post={post} />
+        ))}
+      </div>}
     </section>
   );
 }
 
-function PostTile({ post }) {
+function PostTile({ post,setView }) {
   return (
-    <div className="h-full min-h-44 w-full">
+    <div onClick={()=>setView("fullView")} className="h-full min-h-44 w-full">
       <img
         className="object-cover h-full w-full object-center"
         src={post?.image}

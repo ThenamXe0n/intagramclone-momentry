@@ -21,6 +21,9 @@ function App() {
   const [open, setOpen] = useState(false);
   const [storyIndex, setStoryIndex] = useState(0);
   const [loginStatus, setLoginStatus] = useState(localStorage.getItem("loginStatus")==="momentryLoggedIn" || false);
+
+
+  console.log(storyIndex)
   return (
     <section className="max-w-md mx-auto shadow-neutral-400 shadow-lg  w-full min-h-screen">
       <Routes>
@@ -38,7 +41,7 @@ function App() {
           <Route path={pagePaths.explore} element={<Explore />} />
           <Route path={pagePaths.post} element={<Post />} />
           <Route path={pagePaths.savePost} element={<SavePost />} />
-          <Route path={pagePaths.profile} element={<Profile />} />
+          <Route path={pagePaths.profile} element={<Profile setStoryIndex={setStoryIndex} setStoryOpen={setOpen} />} />
           <Route path={pagePaths.settings} element={<Settings />} />
         </Route>
         <Route path={pagePaths.login} element={<Login />} />
