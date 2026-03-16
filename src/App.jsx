@@ -29,7 +29,7 @@ function App() {
 
  
          
-  console.log(storyIndex);
+  // console.log(storyIndex);
   return (
     <section className="max-w-md mx-auto shadow-neutral-400 shadow-lg  w-full min-h-screen">
       <Routes>

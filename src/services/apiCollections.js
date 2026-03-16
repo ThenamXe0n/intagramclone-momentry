@@ -39,8 +39,8 @@ export const loginUserAPI = async (payload) => {
     localStorage.setItem("loggedInUser", JSON.stringify(isExist.data[0]));
 
     return {
-      user:isExist.data[0],
-      loginStatus:"momentryLoggedIn"
+      user: isExist.data[0],
+      loginStatus: "momentryLoggedIn",
     };
   } catch (error) {
     console.log("Error in loginUserAPI", error);
@@ -79,12 +79,36 @@ export const fetchUserPostAPI = async (userid) => {
   }
 };
 
-export const likePostAPI = async (postId,likepayload) => {
+export const likePostAPI = async (postId, likepayload) => {
   try {
-    let response = await axiosInstance.patch(`${apiPaths.POST}/${postId}`,{likes:likepayload});
+    let response = await axiosInstance.patch(`${apiPaths.POST}/${postId}`, {
+      likes: likepayload,
+    });
     return response.data;
-
   } catch (err) {
     throw new Error(err.message);
   }
 };
+
+export const sendNotificationAPI = async (notificationDetails) => {
+  try {
+    const response = await axiosInstance.post(
+      apiPaths.NOTIFICATION,
+      notificationDetails,
+    );
+    return response.data;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+export const fetchUserNotificationAPI= async(userId)=> {
+  try {
+    let response = await axiosInstance.get(
+      `/notifications?receiverId=${userId}`,
+    );
+    return response.data;
+  } catch (error) {
+    throw new Error(error);
+  }
+}

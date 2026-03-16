@@ -8,13 +8,24 @@
       "avatar": "",
       "bio": "",
       "id": 1
+    },
+    {
+      "email": "demo@gmail.com",
+      "fullName": "demo ",
+      "username": "demo123",
+      "password": "demo@123",
+      "avatar": "",
+      "bio": "",
+      "id": 2
     }
   ],
   "posts": [
     {
       "image": "https://i.pinimg.com/736x/de/5a/3e/de5a3eee399dd05d443048b3b3c44d1d.jpg",
       "caption": "tesr",
-      "likes": [],
+      "likes": [
+        2
+      ],
       "createdAt": "3/14/2026",
       "userId": 1,
       "user": {
@@ -44,23 +55,76 @@
         "id": 1
       },
       "id": 2
+    },
+    {
+      "image": "https://khkj.com",
+      "caption": "",
+      "likes": [],
+      "createdAt": "3/16/2026",
+      "userId": 1,
+      "user": {
+        "email": "nm@gmail.com",
+        "fullName": "Nameet Mandwal",
+        "username": "nameet",
+        "password": "demo@123",
+        "avatar": "",
+        "bio": "",
+        "id": 1
+      },
+      "id": 3
+    },
+    {
+      "image": "https://i.pinimg.com/736x/d2/c9/bf/d2c9bf07268844a420c26de0f7c0ad08.jpg",
+      "caption": "test",
+      "likes": [
+        1
+      ],
+      "createdAt": "3/16/2026",
+      "userId": 2,
+      "user": {
+        "email": "demo@gmail.com",
+        "fullName": "demo ",
+        "username": "demo123",
+        "password": "demo@123",
+        "avatar": "",
+        "bio": "",
+        "id": 2
+      },
+      "id": 4
     }
   ],
   "notifications": [
     {
-      "senderId": "XXbMcho",
-      "receiverId": "sdfsd",
+      "senderId": 2,
+      "receiverId": 1,
       "sender": {
-        "username": "nameet",
-        "avatar": "https://i.pinimg.com/1200x/95/56/6b/95566b30ff6750fbc820bb26fcca9410.jpg"
+        "username": "demo123",
+        "avatar": ""
       },
       "type": "post",
-      "createdAt": "2026-03-12T12:55:35.155Z",
+      "createdAt": "2026-03-16T12:28:53.897Z",
       "message": "liked your post",
       "postdetails": {
-        "image": "https://i.pinimg.com/1200x/95/56/6b/95566b30ff6750fbc820bb26fcca9410.jpg",
-        "id": "vcasdf"
-      }
+        "image": "https://i.pinimg.com/736x/de/5a/3e/de5a3eee399dd05d443048b3b3c44d1d.jpg",
+        "id": 1
+      },
+      "id": 1
+    },
+    {
+      "senderId": 1,
+      "receiverId": 2,
+      "sender": {
+        "username": "nameet",
+        "avatar": ""
+      },
+      "type": "post",
+      "createdAt": "2026-03-16T12:36:28.055Z",
+      "message": "liked your post",
+      "postdetails": {
+        "image": "https://i.pinimg.com/736x/d2/c9/bf/d2c9bf07268844a420c26de0f7c0ad08.jpg",
+        "id": 4
+      },
+      "id": 2
     }
   ]
 }

@@ -1,23 +1,45 @@
 import React from "react";
-import { likePostAPI } from "../services/apicollections";
+import { likePostAPI, sendNotificationAPI } from "../services/apicollections";
+import { useSelector } from "react-redux";
 
-const PostDisplayCard = React.memo(function({ post, liked }) {
+const PostDisplayCard = React.memo(function ({ post, liked }) {
+  const { id, username, avatar } = useSelector(
+    (state) => state.auth.loggedInUser,
+  );
+  // console.log("loggedInuser details", details);
   const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 
   async function handlePostLike() {
-    console.log("clicked")
+    console.log("clicked");
     try {
       let newLikes = [...new Set([...post.likes, loggedInUser.id])];
-      let response = await likePostAPI(post?.id, newLikes);
+      await likePostAPI(post?.id, newLikes);
+      //send notification
+      let notificationDetails = {
+        senderId:id,
+        receiverId:post.userId,
+        sender:{
+          username:username,
+          avatar:avatar
+        },
+        type:"post",
+        createdAt:new Date(),
+        message:"liked your post",
+        postdetails:{
+          image:post.image,
+          id:post.id
+        }
+      }
+      sendNotificationAPI(notificationDetails);
 
-      // alert("api fetched");
+      alert("api fetched");
     } catch (error) {
       console.log(error.message);
       alert("failed to like post!");
     }
   }
   async function handlePostDisLike() {
-        console.log("clicked")
+    console.log("clicked");
     try {
       let newLikes = post.likes;
       let idx = newLikes.indexOf(loggedInUser.id);
@@ -156,6 +178,6 @@ const PostDisplayCard = React.memo(function({ post, liked }) {
       </div>
     </div>
   );
-})
+});
 
 export default PostDisplayCard;
