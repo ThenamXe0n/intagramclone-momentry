@@ -3,16 +3,14 @@ import axiosInstance from "../services/axiosInstance";
 import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUserNotificationAsync } from "../features/notification/notificationSlice";
+import { Link } from "react-router";
 
 export default function Notifications() {
-  const dispatch = useDispatch();
   const notifications= useSelector((state)=>state.notification.notificationList);
-  const { id } = useSelector((state) => state.auth.loggedInUser);
+
   const { loading } = useSelector((state) => state.notification);
 
-  useEffect(() => {
-    dispatch(fetchUserNotificationAsync(id));
-  }, [id]);
+ 
 
   return (
     <div className="p-4">
@@ -46,7 +44,7 @@ export function NotificationTile({ notification }) {
         />
       </div>
       <div className="space-x-2 flex-1">
-        <strong>{notification?.sender?.username}</strong>
+        <Link to={`/user/${notification?.senderId}`}><strong>{notification?.sender?.username}</strong></Link>
         <span>{notification?.message}</span> •{" "}
         <span>{moment(notification?.createdAt, "YYYYMMDD").fromNow()}</span>
       </div>

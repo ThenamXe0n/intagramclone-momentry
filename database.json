@@ -42,7 +42,9 @@
     {
       "image": "https://tse3.mm.bing.net/th/id/OIP.V10Hix7JbRHhLca3nvx9SwHaEK?pid=Api&h=220&P=0",
       "caption": "ghj",
-      "likes": [],
+      "likes": [
+        2
+      ],
       "createdAt": "3/14/2026",
       "userId": 1,
       "user": {
@@ -59,7 +61,9 @@
     {
       "image": "https://khkj.com",
       "caption": "",
-      "likes": [],
+      "likes": [
+        2
+      ],
       "createdAt": "3/16/2026",
       "userId": 1,
       "user": {
@@ -77,7 +81,8 @@
       "image": "https://i.pinimg.com/736x/d2/c9/bf/d2c9bf07268844a420c26de0f7c0ad08.jpg",
       "caption": "test",
       "likes": [
-        1
+        1,
+        2
       ],
       "createdAt": "3/16/2026",
       "userId": 2,
@@ -125,6 +130,54 @@
         "id": 4
       },
       "id": 2
+    },
+    {
+      "senderId": 2,
+      "receiverId": 1,
+      "sender": {
+        "username": "demo123",
+        "avatar": ""
+      },
+      "type": "post",
+      "createdAt": "2026-03-17T12:03:50.191Z",
+      "message": "liked your post",
+      "postdetails": {
+        "image": "https://tse3.mm.bing.net/th/id/OIP.V10Hix7JbRHhLca3nvx9SwHaEK?pid=Api&h=220&P=0",
+        "id": 2
+      },
+      "id": 3
+    },
+    {
+      "senderId": 2,
+      "receiverId": 1,
+      "sender": {
+        "username": "demo123",
+        "avatar": ""
+      },
+      "type": "post",
+      "createdAt": "2026-03-17T13:00:23.556Z",
+      "message": "liked your post",
+      "postdetails": {
+        "image": "https://khkj.com",
+        "id": 3
+      },
+      "id": 4
+    },
+    {
+      "senderId": 2,
+      "receiverId": 2,
+      "sender": {
+        "username": "demo123",
+        "avatar": ""
+      },
+      "type": "post",
+      "createdAt": "2026-03-17T13:00:38.509Z",
+      "message": "liked your post",
+      "postdetails": {
+        "image": "https://i.pinimg.com/736x/d2/c9/bf/d2c9bf07268844a420c26de0f7c0ad08.jpg",
+        "id": 4
+      },
+      "id": 5
     }
   ]
 }

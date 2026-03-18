@@ -1,5 +1,6 @@
 import { Link } from "react-router";
 import { pagePaths } from "../router/pagePaths";
+import { useSelector } from "react-redux";
 
 export const PostIcon = () => {
   return (
@@ -23,12 +24,15 @@ export const PostIcon = () => {
 };
 
 export const NotificationIcon = ({ pendingnotification }) => {
+  const notificationCount = useSelector((s) =>s.notification?.count);
   return (
     <Link to={pagePaths.notifications} className="relative">
       <div
         to={pagePaths.notifications}
-        className="size-2 bg-red-500 rounded-full absolute -top-0.2 right-0 "
-      >2</div>
+        className="size-4 text-xs text-white flex items-center justify-center bg-red-500 rounded-full absolute -top-0.2 right-0 "
+      >
+        {notificationCount}
+      </div>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"

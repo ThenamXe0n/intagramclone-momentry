@@ -16,18 +16,23 @@ import ProtectedRoute from "./router/ProtectedRoute";
 import { useEffect, useState } from "react";
 import StoryPortal from "./portal/StoryPortal";
 import { stories } from "./data/data";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchDetails } from "./features/auth/authSlice";
+import { fetchUserNotificationAsync } from "./features/notification/notificationSlice";
+import UserProfile from "./pages/UserProfile";
 
 function App() {
   const dispatch = useDispatch();
+    const { id } = useSelector((state) => state.auth.loggedInUser);
   const [open, setOpen] = useState(false);
   const [storyIndex, setStoryIndex] = useState(0);
   const [loginStatus, setLoginStatus] = useState(
     localStorage.getItem("loginStatus") === "momentryLoggedIn" || false,
   );
 
- 
+  useEffect(() => {
+    dispatch(fetchUserNotificationAsync(id));
+  }, [id]);
          
   // console.log(storyIndex);
   return (
@@ -62,6 +67,7 @@ function App() {
               <Profile setStoryIndex={setStoryIndex} setStoryOpen={setOpen} />
             }
           />
+          <Route path="/user/:id" element={<UserProfile/>} />
           <Route path={pagePaths.settings} element={<Settings />} />
         </Route>
         <Route path={pagePaths.login} element={<Login />} />

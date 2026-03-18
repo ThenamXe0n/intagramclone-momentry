@@ -4,11 +4,13 @@ import React from "react";
 import { Link, useLocation } from "react-router";
 import { pagePaths } from "../router/pagePaths";
 import { NotificationIcon, PostIcon } from "../assets/icons";
+import { useSelector } from "react-redux";
 
 // function Header
 
 const NavBar = () => {
   const { pathname } = useLocation();
+  const viewUserDetails = useSelector((state)=>state.common.viewUser)
   const loggedIn = JSON.parse(localStorage.getItem("loggedInUser"));
   return (
     <div className="flex items-center justify-between h-full px-4">
@@ -26,7 +28,7 @@ const NavBar = () => {
         </Link>
       ) : (
         <div>
-          <span className="font-bold text-lg">{loggedIn?.username || "no user name"}</span>
+          <span className="font-bold text-lg">{viewUserDetails.username ||loggedIn?.username || "no user name"}</span>
         </div>
       )}
       <NotificationIcon />

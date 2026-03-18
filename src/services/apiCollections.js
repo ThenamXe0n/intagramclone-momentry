@@ -112,3 +112,16 @@ export const fetchUserNotificationAPI= async(userId)=> {
     throw new Error(error);
   }
 }
+export const fetchUserDetailsByIdAPI= async(userId)=> {
+  try {
+    let response = await axiosInstance.get(
+      `/users/${userId}`,
+    );
+    return response.data;
+  } catch (error) {
+    throw new Error(error);
+  }
+}
+
+
+
